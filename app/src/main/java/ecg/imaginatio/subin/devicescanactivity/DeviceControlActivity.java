@@ -170,6 +170,7 @@ public class DeviceControlActivity extends Activity {
 
 //        getActionBar().setTitle(mDeviceName);
   //      getActionBar().setDisplayHomeAsUpEnabled(true);
+        //working
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
