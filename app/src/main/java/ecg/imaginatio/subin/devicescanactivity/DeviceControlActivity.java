@@ -106,8 +106,14 @@ public class DeviceControlActivity extends Activity {
                 clearUI();
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Show all the supported services and characteristics on the user interface.
+
+                ////Initiates the service and nothing happens//////////////////////////////////////////////////////////////////
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
+                Log.e("services","intiated");
+
+                //shows the extra data that is received from bluetooth//////////////////////////////////////////////////////////
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+                Log.e("data",BluetoothLeService.EXTRA_DATA);
                 displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
             }
         }
@@ -160,6 +166,7 @@ public class DeviceControlActivity extends Activity {
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
+        Log.e("device name",mDeviceName);
 
         // Sets up UI references.
         ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
@@ -236,9 +243,16 @@ public class DeviceControlActivity extends Activity {
         });
     }
 
+
+    ////shows the data received to the main screnn //////////////////////////////////////////////////////////////////
     private void displayData(String data) {
+        Log.e("data",data);
         if (data != null) {
             mDataField.setText(data);
+        }
+        else
+        {
+            mDataField.setText("data not present");
         }
     }
 
